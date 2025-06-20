@@ -14,7 +14,9 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class ApiViewModel(application: Application) : AndroidViewModel(application) {
-
+    val userId = getApplication<Application>()
+        .getSharedPreferences("user_prefs", Application.MODE_PRIVATE)
+        .getInt("user_id", -1)
     private val repository = ApiRepository()
     private val _datasets = MutableStateFlow<List<DatasetItem>>(emptyList())
     val datasets: StateFlow<List<DatasetItem>> = _datasets
@@ -44,12 +46,20 @@ class ApiViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun addFavorite(fav: FavoriteEntity) {
+    fun addToFavorites(name: String, apiUrl: String) {
         viewModelScope.launch {
+            val userId = getApplication<Application>()
+                .getSharedPreferences("user_prefs", Application.MODE_PRIVATE)
+                .getInt("user_id", -1)
+            val fav = FavoriteEntity(
+                name = name,
+                url = apiUrl,
+                userId = userId
+            )
             favoritesDao.insertFavorite(fav)
-            loadFavorites()
         }
     }
+
 
     fun removeFavoriteByUrl(url: String) {
         viewModelScope.launch {

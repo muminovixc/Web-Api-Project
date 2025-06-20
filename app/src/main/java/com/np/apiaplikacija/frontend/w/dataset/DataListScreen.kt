@@ -61,7 +61,6 @@ fun DatasetListScreen(
                     ) {
                         Column {
                             Text(text = dataset.name, style = MaterialTheme.typography.titleMedium)
-                            Text(text = dataset.apiUrl, style = MaterialTheme.typography.bodySmall)
                         }
 
                         IconButton(
@@ -70,7 +69,9 @@ fun DatasetListScreen(
                                     if (isFavorite) {
                                         viewModel.removeFavoriteByUrl(dataset.apiUrl)
                                     } else {
-                                        viewModel.addFavorite(FavoriteEntity(name = dataset.name, url = dataset.apiUrl))
+
+                                        viewModel.addToFavorites(name = dataset.name, apiUrl = dataset.apiUrl)
+
                                     }
                                 }
                             }

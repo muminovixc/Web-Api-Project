@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [UserEntity::class], version = 1)
+@Database(entities = [UserEntity::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
 
@@ -18,13 +18,16 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "app_database"
-                ).build().also { INSTANCE = it }
+                )
+                    .fallbackToDestructiveMigration() // Dodano
+                    .build()
+                    .also { INSTANCE = it }
             }
         }
     }
 }
 
-@Database(entities = [FavoriteEntity::class], version = 1)
+@Database(entities = [FavoriteEntity::class], version = 2)
 abstract class FavoritesDatabase : RoomDatabase() {
 
     abstract fun favoritesDao(): FavoritesDao
@@ -35,13 +38,14 @@ abstract class FavoritesDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): FavoritesDatabase {
             return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
+                Room.databaseBuilder(
                     context.applicationContext,
                     FavoritesDatabase::class.java,
                     "favorites_database"
-                ).build()
-                INSTANCE = instance
-                instance
+                )
+                    .fallbackToDestructiveMigration() // Dodano
+                    .build()
+                    .also { INSTANCE = it }
             }
         }
     }

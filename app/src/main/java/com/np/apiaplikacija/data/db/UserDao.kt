@@ -26,4 +26,5 @@ interface FavoritesDao {
 
     @Query("SELECT * FROM favorites")
     fun getAllFavorites(): Flow<List<FavoriteEntity>>
+
 }

@@ -28,7 +28,7 @@ fun DatasetDetailScreen(
 
     val gradovi = listOf(
         "Sarajevo", "Tuzla", "Zenica", "Mostar", "Bihać",
-        "Bijeljina", "Doboj", "Prijedor", "Trebinje", "Travnik",
+       "Prijedor", "Travnik",
         "Goražde", "Gradačac", "Cazin", "Zavidovići", "Konjic"
     )
 
@@ -43,7 +43,7 @@ fun DatasetDetailScreen(
     LaunchedEffect(decodedUrl) {
         viewModel.loadData(
             decodedUrl,
-            token = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyMDczIiwibmJmIjoxNzUwMzY3ODYxLCJleHAiOjE3NTA0NTQyNjEsImlhdCI6MTc1MDM2Nzg2MX0.wu6JtsUO9Vx_kN46Of7Yae__s3CwYj1ZURd3ubInvhXlU6QS52qzzb5uat3wHhwDZTLlpbEzBPbDnQhN3E1-sw"
+            token = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyMDczIiwibmJmIjoxNzUwNDU1OTk2LCJleHAiOjE3NTA1NDIzOTYsImlhdCI6MTc1MDQ1NTk5Nn0.bcei5S82zluoNBlgj2Ge1eVnayuJemWTGPUCQ2S8W3M8UI9RTHt1_cEh8x9Edn0-YrJ1O6v2un-fbonRpdHmSg"
         )
     }
 

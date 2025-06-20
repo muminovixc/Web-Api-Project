@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 class AuthViewModel(application: Application) : AndroidViewModel(application) {
     private val db = AppDatabase.getInstance(application)
     private val repo = AuthRepository(db.userDao())
+    private val preferences = application.getSharedPreferences("user_prefs", Application.MODE_PRIVATE)
 
     private val _loginSuccess = MutableStateFlow(false)
     val loginSuccess: StateFlow<Boolean> = _loginSuccess
@@ -23,7 +24,13 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     fun login(email: String, password: String) {
         viewModelScope.launch {
             val user = repo.login(email, password)
-            _loginSuccess.value = user != null
+            if (user != null) {
+                // ✅ Spasi user_id u SharedPreferences
+                preferences.edit().putInt("user_id", user.id).apply()
+                _loginSuccess.value = true
+            } else {
+                _loginSuccess.value = false
+            }
         }
     }
 

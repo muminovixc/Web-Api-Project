@@ -49,7 +49,11 @@ fun StatistikaScreen(backStackEntry: NavBackStackEntry) {
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Statistika") })
+            TopAppBar(
+                title = {
+                    Text("Statistika | M: $male | Ž: $female")
+                }
+            )
         }
     ) { padding ->
         Column(
@@ -69,7 +73,6 @@ fun StatistikaScreen(backStackEntry: NavBackStackEntry) {
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // ➕ Legenda
             Row(
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
                 verticalAlignment = Alignment.CenterVertically

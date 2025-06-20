@@ -15,6 +15,11 @@ import com.np.apiaplikacija.viewmodel.ApiViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FavoritesScreen(viewModel: ApiViewModel, navController: NavController) {
+    // 🚀 Poziv učitavanja pri otvaranju ekrana
+    LaunchedEffect(Unit) {
+        viewModel.loadFavorites()
+    }
+
     val favorites by viewModel.favorites.collectAsState()
 
     Scaffold(
@@ -53,7 +58,6 @@ fun FavoritesScreen(viewModel: ApiViewModel, navController: NavController) {
                     ) {
                         Column(modifier = Modifier.padding(16.dp)) {
                             Text(text = dataset.name, style = MaterialTheme.typography.titleMedium)
-                            Text(text = dataset.url, style = MaterialTheme.typography.bodySmall)
                         }
                     }
                 }

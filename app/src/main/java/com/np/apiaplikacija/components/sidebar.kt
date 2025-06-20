@@ -2,10 +2,7 @@ package com.np.apiaplikacija.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -24,10 +21,9 @@ fun SideBar(navController: NavController, content: @Composable () -> Unit) {
     var selectedItem by remember { mutableStateOf("home") }
 
     val items = listOf(
-        DrawerItem("Home", "home", Icons.Default.Home),
-        DrawerItem("Profile", "profile", Icons.Default.Person),
-        DrawerItem("Dataseti", "datasets", Icons.Default.Settings),
-        DrawerItem("favorites", "favorites", Icons.Default.Settings)
+        DrawerItem("Početna", "home", Icons.Default.Home),
+        DrawerItem("Dataseti", "datasets", Icons.Default.List),
+        DrawerItem("Omiljeni", "favorites", Icons.Default.Favorite),
     )
 
     ModalNavigationDrawer(
@@ -64,7 +60,7 @@ fun SideBar(navController: NavController, content: @Composable () -> Unit) {
                             IconButton(onClick = {
                                 scope.launch { drawerState.open() }
                             }) {
-                                Icon(Icons.Default.Menu, contentDescription = "Open Drawer")
+                                Icon(Icons.Default.Menu, contentDescription = "Otvori meni")
                             }
                         }
                     )
