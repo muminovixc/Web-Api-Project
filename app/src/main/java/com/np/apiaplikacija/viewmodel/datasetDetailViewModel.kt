@@ -1,0 +1,33 @@
+package com.np.apiaplikacija.viewmodel
+
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.media3.common.util.Log
+import com.google.gson.JsonElement
+import com.np.apiaplikacija.data.api.RetrofitClient
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+
+class DatasetDetailViewModel : ViewModel() {
+    private val _json = MutableStateFlow<JsonElement?>(null)
+    val json: StateFlow<JsonElement?> = _json
+
+    fun loadData(url: String, token: String) {
+        viewModelScope.launch {
+            try {
+                val response = RetrofitClient.dynamicApi.getDynamicJson(
+                    url = url,
+                    token = "Bearer $token",
+                    body = mapOf("languageId" to "1") // ili neki stvarni body koji API traži
+
+                )
+
+                _json.value = response
+            } catch (e: Exception) {
+
+            }
+        }
+    }
+}

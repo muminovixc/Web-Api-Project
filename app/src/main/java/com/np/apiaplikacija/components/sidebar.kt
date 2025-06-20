@@ -26,7 +26,8 @@ fun SideBar(navController: NavController, content: @Composable () -> Unit) {
     val items = listOf(
         DrawerItem("Home", "home", Icons.Default.Home),
         DrawerItem("Profile", "profile", Icons.Default.Person),
-        DrawerItem("Settings", "settings", Icons.Default.Settings)
+        DrawerItem("Dataseti", "datasets", Icons.Default.Settings),
+        DrawerItem("favorites", "favorites", Icons.Default.Settings)
     )
 
     ModalNavigationDrawer(
