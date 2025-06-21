@@ -12,7 +12,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.np.apiaplikacija.data.db.FavoriteEntity
 import com.np.apiaplikacija.viewmodel.ApiViewModel
 import kotlinx.coroutines.launch
 
@@ -69,9 +68,7 @@ fun DatasetListScreen(
                                     if (isFavorite) {
                                         viewModel.removeFavoriteByUrl(dataset.apiUrl)
                                     } else {
-
                                         viewModel.addToFavorites(name = dataset.name, apiUrl = dataset.apiUrl)
-
                                     }
                                 }
                             }

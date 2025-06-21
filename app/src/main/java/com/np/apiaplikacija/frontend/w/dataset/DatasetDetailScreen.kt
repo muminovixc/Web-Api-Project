@@ -1,5 +1,6 @@
 package com.np.apiaplikacija.frontend.w.dataset
 
+import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -8,6 +9,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -141,6 +143,9 @@ fun DatasetDetailScreen(
                                 (selectedYear.isBlank() || year.contains(selectedYear))
                     }
 
+
+                    val context = LocalContext.current
+
                     LazyColumn {
                         items(filteredList) { item: JsonObject ->
                             Card(
@@ -165,19 +170,42 @@ fun DatasetDetailScreen(
 
                                     Spacer(modifier = Modifier.height(12.dp))
 
-                                    Button(
-                                        onClick = {
-                                            val encodedData = Uri.encode(item.toString())
-                                            navController.navigate("statistika/$encodedData")
-                                        },
-                                        modifier = Modifier.align(Alignment.End)
+                                    Row(
+                                        horizontalArrangement = Arrangement.SpaceBetween,
+                                        modifier = Modifier.fillMaxWidth()
                                     ) {
-                                        Text("Pogledaj statistiku")
+                                        Button(
+                                            onClick = {
+                                                val encodedData = Uri.encode(item.toString())
+                                                navController.navigate("statistika/$encodedData")
+                                            }
+                                        ) {
+                                            Text("Pogledaj statistiku")
+                                        }
+
+                                        Button(
+                                            onClick = {
+                                                val prettyText = item.entrySet().joinToString(separator = "\n") { entry ->
+                                                    "${entry.key}: ${entry.value.asString}"
+                                                }
+
+                                                val shareIntent = Intent().apply {
+                                                    action = Intent.ACTION_SEND
+                                                    putExtra(Intent.EXTRA_TEXT, prettyText)
+                                                    type = "text/plain"
+                                                }
+                                                context.startActivity(Intent.createChooser(shareIntent, "Podijeli podatke putem:"))
+                                            }
+                                        ) {
+                                            Text("Podijeli")
+                                        }
+
                                     }
                                 }
                             }
                         }
                     }
+
 
                 } else {
                     Text("Nema podataka za prikaz ili format nije podržan.")

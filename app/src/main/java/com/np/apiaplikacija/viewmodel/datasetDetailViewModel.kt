@@ -20,7 +20,7 @@ class DatasetDetailViewModel : ViewModel() {
                 val response = RetrofitClient.dynamicApi.getDynamicJson(
                     url = url,
                     token = "Bearer $token",
-                    body = mapOf("languageId" to "1") // ili neki stvarni body koji API traži
+                    body = mapOf("languageId" to "1")
 
                 )
 

@@ -28,3 +28,16 @@ interface FavoritesDao {
     fun getAllFavorites(): Flow<List<FavoriteEntity>>
 
 }
+
+@Dao
+interface DatasetDao {
+    @Query("SELECT * FROM datasets")
+    suspend fun getAllDatasets(): List<DatasetEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(datasets: List<DatasetEntity>)
+
+    @Query("DELETE FROM datasets")
+    suspend fun deleteAll()
+}
+

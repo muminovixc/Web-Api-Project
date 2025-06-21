@@ -67,4 +67,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation("com.github.tehras:charts:0.2.4-alpha")
+    implementation("com.google.code.gson:gson:2.10.1")
+
 }

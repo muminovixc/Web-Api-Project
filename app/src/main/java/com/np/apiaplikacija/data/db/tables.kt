@@ -19,3 +19,12 @@ data class FavoriteEntity(
     val url: String,
     val userId: Int
 )
+
+@Entity(tableName = "datasets")
+data class DatasetEntity(
+    @PrimaryKey(autoGenerate = true) val autoincrement: Int = 0,
+    val id: Int,
+    val name: String,
+    val apiUrl: String
+)
+
