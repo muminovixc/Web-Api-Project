@@ -45,7 +45,7 @@ fun DatasetDetailScreen(
     LaunchedEffect(decodedUrl) {
         viewModel.loadData(
             decodedUrl,
-            token = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyMDczIiwibmJmIjoxNzUwNDU1OTk2LCJleHAiOjE3NTA1NDIzOTYsImlhdCI6MTc1MDQ1NTk5Nn0.bcei5S82zluoNBlgj2Ge1eVnayuJemWTGPUCQ2S8W3M8UI9RTHt1_cEh8x9Edn0-YrJ1O6v2un-fbonRpdHmSg"
+            token = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyMDczIiwibmJmIjoxNzUxMjAyMTQ3LCJleHAiOjE3NTEyODg1NDcsImlhdCI6MTc1MTIwMjE0N30.8e97aiU5ryxPDntAJ3Wlk_8GMIhWFFW5YHIICeXWtRLns8evS0Mps8-hl_uTPkQyuvqz88DNWp0bN7pUCRe_Nw"
         )
     }
 
