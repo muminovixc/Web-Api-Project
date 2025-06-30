@@ -16,6 +16,7 @@ import androidx.navigation.NavController
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import com.np.apiaplikacija.viewmodel.DatasetDetailViewModel
+import com.np.apiaplikacija.BuildConfig
 import java.net.URLDecoder
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -44,8 +45,7 @@ fun DatasetDetailScreen(
 
     LaunchedEffect(decodedUrl) {
         viewModel.loadData(
-            decodedUrl,
-            token = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyMDczIiwibmJmIjoxNzUwNDU1OTk2LCJleHAiOjE3NTA1NDIzOTYsImlhdCI6MTc1MDQ1NTk5Nn0.bcei5S82zluoNBlgj2Ge1eVnayuJemWTGPUCQ2S8W3M8UI9RTHt1_cEh8x9Edn0-YrJ1O6v2un-fbonRpdHmSg"
+            decodedUrl
         )
     }
 

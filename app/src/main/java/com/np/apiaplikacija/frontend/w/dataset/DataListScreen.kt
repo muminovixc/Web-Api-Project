@@ -14,12 +14,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.np.apiaplikacija.viewmodel.ApiViewModel
 import kotlinx.coroutines.launch
+import com.np.apiaplikacija.BuildConfig
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DatasetListScreen(
     viewModel: ApiViewModel,
-    token: String,
     navController: NavController
 ) {
     val datasets by viewModel.datasets.collectAsState()
@@ -27,7 +27,7 @@ fun DatasetListScreen(
     val coroutineScope = rememberCoroutineScope()
 
     LaunchedEffect(true) {
-        viewModel.loadDatasets(token)
+        viewModel.loadDatasets(BuildConfig.API_KEY)
         viewModel.loadFavorites()
     }
 
